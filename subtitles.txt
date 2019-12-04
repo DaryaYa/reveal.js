@@ -1,0 +1,16 @@
+1.Slide 1 (Canvas).
+	Canvas is one of the most well-known feature in HTML5. 
+Developers like to use it for creating rich web applications. 
+The Canvas API provides a means for drawing 
+graphics via JavaScript and the HTML <canvas> element. 
+Among other things, it can be used for animation, 
+game graphics, data visualization, photo manipulation, and real-time video processing.
+
+2.Slide 2 ( X and Y).
+	Every canvas element has x and y coordinates. X being the horizontal coordinate and Y being 
+the vertical coordinate. The following image shows these coordinates on a canvas.
+
+3.Slide 3 (Setting up the canvas).
+	To set up a canvas for drawing, your must add a <canvas> tag in HTML and assign a 2D drawing 
+context to it in JavaScript. All the drawing operations are performed in the context.
+The actual drawing is done using the CanvasRenderingContext2D interface.
