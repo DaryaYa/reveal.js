@@ -1,69 +1,173 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section data-transition="zoom">
-					<h1>Canvas</h1>
-					<p class="fragment">Canvas API</p>
-					<p class="fragment">&lt;canvas&gt; element</p>
-				</section>
-				
-				<section><p>X and Y coordinates</p> 
-					<img src="./img/canvasCoords.png" alt="canvas Coordinates">
-				</section>
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
 
-				<section><p>Setting Up the Canvas</p>
-					<div class="fragment">
-						<p>HTML</p>
-						<img src="./img/canvasHTML.jpg" alt="HTML">
-					</div>
-					<div class="fragment">
-						<p>JavaScript</p>
-						<img src="./img/canvasJS.jpg" alt="JS">
-					</div>
-					
-				</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
 
-		<script src="js/reveal.js"></script>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-transition="zoom">
+                <h1>Canvas</h1>
+                <p class="fragment">Canvas API</p>
+                <p class="fragment">&lt;canvas&gt; element</p>
+            </section>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+            <section>
+                <p>X and Y coordinates</p>
+                <img src="./img/canvasCoords.png" alt="canvas Coordinates">
+            </section>
+
+            <section>
+                <p>Setting Up the Canvas</p>
+                <div class="fragment">
+                    <p>HTML</p>
+                    <pre><code data-trim class="html">
+							<canvas id="canvas"></canvas>
+						</code></pre>
+                </div>
+                <div class="fragment">
+                    <p>JavaScript</p>
+                    <pre><code data-trim class="javascript">
+						const canvas = document.getElementById("canvas");
+						const ctx = canvas.getContext("2d");
+						</code></pre>
+                </div>
+            </section>
+            <section>
+                <h2>How To Draw on the Canvas With JS </h2>
+                <p class="fragment"><strong>Step 1:</strong> Find the Canvas Element</p>
+                <p class="fragment"><strong>Step 2:</strong> Create a Drawing Object</p>
+                <div class="fragment">
+                    <p><strong>Step 3:</strong> Draw on the Canvas</p>
+                    <pre><code data-trim>
+						ctx.fillStyle = "#FF0000";
+						ctx.fillRect(0, 0, 150, 75);
+					</code></pre>
+            </section>
+            <section>
+                <p>Draw a Line</p>
+                <img src="./img/line.png" alt="line">
+                <pre><code data-trim class="javascript">
+							ctx.moveTo(0, 0);
+							ctx.lineTo(200, 100);
+							ctx.stroke();
+				</code></pre>
+            </section>
+            <section>
+                <p>Draw a Circle</p>
+                <img src="./img/circle.png" alt="circle">
+                <pre><code data-trim>
+							ctx.beginPath();
+							ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+							ctx.stroke();
+				</code></pre>
+                <div class="fragment">
+                    <pre><code data-trim>
+								arc(x, y, radius, startAngle, endAngle, anticlockwise);
+								arcTo(x1, y1, x2, y2, radius);
+					</code></pre>
+                </div>
+            </section>
+            <section>
+                <p>Drawing shapes</p>
+                <img src="./img/heart.png" alt="heart">
+                <div class="fragment">
+                    <pre><code data-trim>
+							quadraticCurveTo(cp1x, cp1y, x, y);
+					  	</code></pre>
+                </div>
+                <div class="fragment">
+                    <pre><code data-trim>
+							bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+					</code></pre>
+                </div>
+            </section>
+            <section>
+                <p>Gradients</p>
+                <img src="./img/gradient.png" alt="gradient">
+                <pre><code data-trim>
+					createLinearGradient(x,y,x1,y1);
+					createRadialGradient(x,y,r,x1,y1,r1);
+					addColorStop() 
+					</code></pre>
+            </section>
+            <section>
+                <p>Drawing Text on the Canvas</p>
+                <img src="./img/text.png" alt="text">
+                <pre><code data-trim>
+					font;
+					fillText(text, x, y [, maxWidth]);
+					strokeText(text, x, y [, maxWidth]);
+				</code></pre>
+            </section>
+            <section>
+                <p>Images</p>
+                <img src="./img/canvasImg.jpg" alt="img">
+                <pre><code data-trim>
+					drawImage(image, x, y, width, height);
+				</code></pre>
+                <div class="fragment">
+                    <pre><code data-trim class="javascript">
+						HTMLImageElement
+						SVGImageElement
+						HTMLVideoElement
+						HTMLCanvasElement
+					</code></pre>
+                </div>
+            </section>
+            <section data-background-video="./img/2019-12-07 16-26-31_Trim (4).mp4" data-background-video-loop="loop">
+                <p>Animation</p>
+                <ol class="fragment">Basic animation steps
+                    <li class="fragment"> Clear the canvas</li>
+                    <li class="fragment"> Save the canvas state</li>
+                    <li class="fragment"> Draw animated shapes</li>
+                    <li class="fragment"> Restore the canvas state</li>
+                </ol>
+            </section>
+            </div>
+        </div>
+
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [{
+                    src: 'plugin/markdown/marked.js'
+                }, {
+                    src: 'plugin/markdown/markdown.js'
+                }, {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                }, {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true
+                }]
+            });
+        </script>
+</body>
+
 </html>
