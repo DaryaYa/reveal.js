@@ -1,8 +1,5 @@
 1.Slide 1 (Canvas).
-	Canvas is one of the most well-known feature in HTML5. 
-Developers like to use it for creating rich web applications. 
-The Canvas API provides a means for drawing 
-graphics via JavaScript and the HTML <canvas> element. 
+	<canvas> is an HTML element which can be used to draw graphics via scripting (usually JavaScript). 
 Among other things, it can be used for animation, 
 game graphics, data visualization, photo manipulation, and real-time video processing.
 
