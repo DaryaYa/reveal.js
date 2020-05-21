@@ -1,0 +1,119 @@
+1.Slide 1 (Canvas).
+	Canvas is one of the most well-known feature in HTML5. 
+Developers like to use it for creating rich web applications. 
+The Canvas API provides a means for drawing 
+graphics via JavaScript and the HTML <canvas> element. 
+Among other things, it can be used for animation, 
+game graphics, data visualization, photo manipulation, and real-time video processing.
+
+2.Slide 2 ( X and Y).
+	Every canvas element has x and y coordinates. X being the horizontal coordinate and Y being 
+the vertical coordinate. The following image shows these coordinates on a canvas.
+
+3.Slide 3 (Setting up the canvas).
+	To set up a canvas for drawing, your must add a <canvas> tag in HTML and assign a 2D drawing 
+context to it in JavaScript. All the drawing operations are performed in the context.
+The actual drawing is done using the CanvasRenderingContext2D interface.
+
+4.Slide 4 (HOW TO DRAW ON THE CANVAS WITH JS)
+	All drawing on the HTML canvas must be done with JavaScript
+	A. First of all, you must find the <canvas> element.
+This is done by using the HTML DOM method getElementById():
+	B. Secondly, you need a drawing object for the canvas.
+The getContext() is a built-in HTML object, with properties and methods for drawing
+	C. Finally, you can draw on the canvas.
+Set the fill style of the drawing object to the color red, for example.
+The fillStyle property can be a CSS color, a gradient, or a pattern. The default fillStyle is black.
+The fillRect(x,y,width,height) method draws a rectangle, filled with the fill style, on the canvas.
+
+5. Slide 5 (Draw a Line)
+	To draw a straight line on a canvas, we usually use the following methods:
+		-moveTo(x,y) - defines the starting point of the line
+		-lineTo(x,y) - defines the ending point of the line
+	To actually draw the line, you must use one of the "ink" methods, like stroke().
+
+6. Slide 6 (Draw a Circle)
+	To draw a circle on a canvas, we can use the following methods:
+		-beginPath() - which begins a path
+		-arc(x,y,r,startAngle,endAngle, antiClockWise) - creates an arc/curve. The x and y parameters 
+define the x- and y-coordinates of the center of the circle. The r parameter starting at startAngle and 
+ending at endAngle going in the given direction indicated by anticlockwise (defaulting to clockwise).
+-arcTo(x1, y1, x2, y2, radius) method draws an arc with the given control points and radius, 
+connected to the previous point by a straight line.
+
+7. Slide 7 (Drawing shapes)
+	The next type of paths available are Bézier curves, can be in both cubic and quadratic varieties. 
+These are generally used to draw complex organic shapes..
+-quadraticCurveTo(cp1x, cp1y, x, y)
+Draws a quadratic Bézier curve from the current pen position to the end point specified by x and y, 
+using the control point specified by cp1x and cp1y.
+-bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+Draws a cubic Bézier curve from the current pen position to the end point specified by x and y, 
+using the control points specified by (cp1x, cp1y) and (cp2x, cp2y) respectively.
+
+8. Slide 8 (Gradients)
+	Gradients can be used to fill rectangles, circles, lines, text, etc. Shapes on the canvas 
+are not limited to solid colors.
+There are two different types of gradients:
+- a linear gradient,
+Creates a linear gradient object with a starting point of (x1, y1) and an end point of (x2, y2).
+- a radial/circular gradient
+Creates a radial gradient. The parameters represent two circles, one with its center at (x1, y1) 
+and a radius of r1, and the other with its center at (x2, y2) with a radius of r2.
+	Once we have a gradient object, we must add two or more color stops.
+The addColorStop() method specifies the color stops, and its position along the gradient. 
+Gradient positions can be anywhere between 0 to 1.
+	To use the gradient, set the fillStyle or strokeStyle property to the gradient, 
+then draw the shape (rectangle, text, or a line).
+
+9. Slide 9 (Drawing Text on the Canvas)
+	We can also draw some text on a canvas.
+The most important property and methods are:
+	-font - defines the font properties for the text
+	-fillText(text, x, y [, maxWidth]) - draws "filled" text on the canvas, optionally with a maximum 
+width to draw.
+	-strokeText(text, x, y [, maxWidth]) - draws text on the canvas (no fill) also optionally 
+with a maximum width to draw.
+
+10. Slide 10 (Images)
+	 One of the more exciting features of <canvas> is the ability to use images.  These can be used 
+to do dynamic photo compositing or as backdrops of graphs, for sprites in games, and so forth. 
+External images can be used in any format supported by the browser, such as PNG, GIF, or JPEG. 
+You can even use the image produced by other canvas elements on the same page as the source!
+	Importing images into a canvas is basically a two step process:
+	A. Get a reference to an HTMLImageElement object or to another canvas element as a source. 
+It is also possible to use images by providing a URL.
+	B. Draw the image on the canvas using the drawImage() function.
+This method specified by the image parameter at the coordinates (x, y) and the width and height parameters,
+which indicate the size to which to scale the image when drawing it onto the canvas.
+The canvas API is able to use any of the following data types as an image source:
+	-HTMLImageElement
+These are images created using the Image() constructor, as well as any <img> element.
+	-SVGImageElement
+These are images embedded using the <image> element.
+	-HTMLVideoElement
+Using an HTML <video> element as your image source grabs the current frame from the video and uses it as an image.
+	-HTMLCanvasElement
+You can use another <canvas> element as your image source.
+These sources are collectively referred to by the type CanvasImageSource.
+
+11. Slide 11 (Animation)
+	Since we're using JavaScript to control <canvas> elements, it's also very easy to make 
+(interactive) animations.Probably the biggest limitation is, that once a shape gets drawn, it stays that way. 
+If we need to move it we have to redraw it and everything that was drawn before it. It takes a lot of time 
+to redraw complex frames and the performance depends highly on the speed of the computer it's running on.
+Basic animation steps
+These are the steps you need to take to draw a frame:
+1.Clear the canvas
+Unless the shapes you'll be drawing fill the complete canvas (for instance a backdrop image), you need to clear 
+any shapes that have been drawn previously. The easiest way to do this is using the clearRect() method.
+2.Save the canvas state
+If you're changing any setting (such as styles, transformations, etc.) which affect the canvas state and you want 
+to make sure the original state is used each time a frame is drawn, you need to save that original state.
+3.Draw animated shapes
+The step where you do the actual frame rendering.
+4.Restore the canvas state
+If you've saved the state, restore it before drawing a new frame.
+
+Well, summing up the topic, I should say that the Canvas API is one of the most interesting
+and versatile technology in modern JavaScript.
