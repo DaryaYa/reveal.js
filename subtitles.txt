@@ -2,7 +2,8 @@
 	HTML Canvas is an amazing 2D drawing API built into all modern web browsers.
 	This screenshot gives you just a taste of what is possible with Canvas.
 <canvas> is an HTML element which can be used to draw graphics via scripting (usually JavaScript). 
-	With Canvas you can draw shapes, manipulate photos, build games, and animate virtually anything; all with proper web standards. You can even create mobile apps with it.
+	With Canvas you can draw shapes, manipulate photos, build games, and animate virtually anything; all with proper web 
+standards. You can even create mobile apps with it.
 	
 2.Slide 2 ( X and Y).
 	Every canvas element has x and y coordinates. X being the horizontal coordinate and Y being 
