@@ -1,42 +1,45 @@
 1.Slide 1 (Canvas).
-	<canvas> is an HTML element which can be used to draw graphics via scripting (usually JavaScript). 
-Among other things, it can be used for animation, 
-game graphics, data visualization, photo manipulation, and real-time video processing.
-
+	HTML Canvas is an amazing 2D drawing API built into all modern web browsers.
+	This screenshot gives you just a taste of what is possible with Canvas.
+<canvas> is an HTML element which can be used to draw graphics via scripting (usually JavaScript). 
+	With Canvas you can draw shapes, manipulate photos, build games, and animate virtually anything; all with proper web standards. You can even create mobile apps with it.
+	
 2.Slide 2 ( X and Y).
 	Every canvas element has x and y coordinates. X being the horizontal coordinate and Y being 
 the vertical coordinate. The following image shows these coordinates on a canvas.
 
 3.Slide 3 (Setting up the canvas).
 	To set up a canvas for drawing, your must add a <canvas> tag in HTML and assign a 2D drawing 
-context to it in JavaScript. All the drawing operations are performed in the context.
-The actual drawing is done using the CanvasRenderingContext2D interface.\
+context to it in JavaScript. 
 
 4.Slide 4 (HOW TO DRAW ON THE CANVAS WITH JS)
-	All drawing on the HTML canvas must be done with JavaScript
-	A. First of all, you must find the <canvas> element.
+	All the drawing operations are performed in the context.
+The actual drawing is done by using the CanvasRenderingContext2D interface.
+	(A. First of all, you must find the <canvas> element.
 This is done by using the HTML DOM method getElementById():
 	B. Secondly, you need a drawing object for the canvas.
 The getContext() is a built-in HTML object, with properties and methods for drawing
 	C. Finally, you can draw on the canvas.
 Set the fill style of the drawing object to the color red, for example.
 The fillStyle property can be a CSS color, a gradient, or a pattern. The default fillStyle is black.
-The fillRect(x,y,width,height) method draws a rectangle, filled with the fill style, on the canvas.
+The fillRect(x,y,width,height) method draws a rectangle, filled with the fill style, on the canvas.)
 
 5. Slide 5 (Draw a Line)
-	To draw a straight line on a canvas, we usually use the following methods:
+	This is quite easy.
+	(To draw a straight line on a canvas, we usually use the following methods:
 		-moveTo(x,y) - defines the starting point of the line
 		-lineTo(x,y) - defines the ending point of the line
-	To actually draw the line, you must use one of the "ink" methods, like stroke().
+	To actually draw the line, you must use one of the "ink" methods, like stroke().)
 
 6. Slide 6 (Draw a Circle)
-	To draw a circle on a canvas, we can use the following methods:
+	We can draw a circle, which is a little bit complicated.
+	(To draw a circle on a canvas, we can use the following methods:
 		-beginPath() - which begins a path
 		-arc(x,y,r,startAngle,endAngle, antiClockWise) - creates an arc/curve. The x and y parameters 
 define the x- and y-coordinates of the center of the circle. The r parameter starting at startAngle and 
 ending at endAngle going in the given direction indicated by anticlockwise (defaulting to clockwise).
 -arcTo(x1, y1, x2, y2, radius) method draws an arc with the given control points and radius, 
-connected to the previous point by a straight line.
+connected to the previous point by a straight line.)
 
 7. Slide 7 (Drawing shapes)
 	The next type of paths available are Bézier curves, can be in both cubic and quadratic varieties. 
