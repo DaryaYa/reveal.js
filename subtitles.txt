@@ -131,7 +131,8 @@ like snow. To do that we will implement the classic particle simulator algorithm
 	-update,
 	-draw,
 	-kill.
-A particle simulator has a list of particles that it loops over. On every frame it updates the position of each particle based on some equation, then kills / creates particles as needed based on some condition. Then it draws the particles.
+A particle simulator has a list of particles that it loops over. On every frame it updates the position of each particle based 
+on some equation, then kills / creates particles as needed based on some condition. Then it draws the particles.
 
 14. Slide 14 (Mobile)
 	Probably the biggest limitation is, that once a shape gets drawn, it stays that way. 
