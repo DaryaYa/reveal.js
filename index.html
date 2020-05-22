@@ -22,6 +22,24 @@
             link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
             document.getElementsByTagName('head')[0].appendChild(link);
         </script>
+        <style>
+            #canvas2 {
+    
+    background-image: linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
+    background-image: -o-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
+    background-image: -moz-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
+    background-image: -webkit-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
+    background-image: -ms-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
+    
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(105,173,212)),
+        color-stop(0.84, rgb(23,82,145))
+    );
+}
+        </style>
     </head>
 
     <body>
@@ -29,10 +47,13 @@
             <div class="slides">
                 <section data-transition="zoom">
                     <h1>Canvas</h1>
+                </section>    
+                <section>
+                    <P><img src="./img/screenshot1.png" alt="screenshot"></P>
                     <p class="fragment">Canvas API</p>
                     <p class="fragment">&lt;canvas&gt; element</p>
                 </section>
-
+                    
                 <section>
                     <p>X and Y coordinates</p>
                     <img src="./img/canvasCoords.png" alt="canvas Coordinates">
@@ -105,7 +126,8 @@
                 </section>
                 <section>
                     <p>Gradients</p>
-                    <img src="./img/gradient.png" alt="gradient">
+                    <img src="./img/linear.png" alt="gradient">
+                    <img src="./img/radial.png" alt="radial-gradient">
                     <pre><code data-trim>
 					createLinearGradient(x,y,x1,y1);
 					createRadialGradient(x,y,r,x1,y1,r1);
@@ -123,7 +145,7 @@
                 </section>
                 <section>
                     <p>Images</p>
-                    <img src="./img/canvasImg.jpg" alt="img">
+                    <img src="./img/sprites.png" alt="img">
                     <pre><code data-trim>
 					drawImage(image, x, y, width, height);
 				</code></pre>
@@ -144,6 +166,180 @@
                         <li class="fragment"> Draw animated shapes</li>
                         <li class="fragment"> Restore the canvas state</li>
                     </ol>
+                </section>
+                <section>
+                    <p>More Animation using RAF</p>
+                    <canvas id="canvas1"></canvas>
+                    <script>
+                           window.requestAnimFrame = (function () {
+                                return window.requestAnimationFrame ||
+                                    window.webkitRequestAnimationFrame ||
+                                    window.mozRequestAnimationFrame ||
+                                    window.oRequestAnimationFrame ||
+                                    window.msRequestAnimationFrame ||
+                                    function (/* function */ callback, /* DOMElement */ element) {
+                                        window.setTimeout(callback, 1000 / 60);
+                                    };
+                            })();
+
+
+                            // example code from mr doob : http://mrdoob.com/lab/javascript/requestanimationframe/
+
+                            let canvas, context, toggle;
+
+                            init();
+                            animate();
+
+                            function init() {
+
+                                canvas = document.getElementById('canvas1');
+                                canvas.width = 512;
+                                canvas.height = 512;
+
+                                context = canvas.getContext('2d');
+                            }
+
+                            function animate() {
+                                requestAnimFrame(animate);
+                                draw();
+
+                            }
+
+                            function draw() {
+
+                                let time = new Date().getTime() * 0.002;
+                                let x = Math.sin(time) * 192 + 256;
+                                let y = Math.cos(time * 0.9) * 192 + 256;
+                                toggle = !toggle;
+
+                                context.fillStyle = toggle ? 'rgb(200,200,20)' : 'rgb(20,20,200)';
+                                context.beginPath();
+                                context.arc(x, y, 10, 0, Math.PI * 2, true);
+                                context.closePath();
+                                context.fill();
+
+                            }
+
+                    </script>
+                </section>
+                <section>
+                    <p>Particle Simulator</p>
+                <canvas id="canvas2"></canvas>
+                   <script>
+                       (function () {
+                            let requestAnimationFrame2 = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
+                                function (callback) {
+                                    window.setTimeout(callback, 1000 / 60);
+                                };
+                            window.requestAnimationFrame = requestAnimationFrame2;
+                        })();
+
+
+                        let flakes = [],
+                            canvas2 = document.getElementById("canvas2"),
+                            ctx = canvas2.getContext("2d"),
+                            flakeCount = 400,
+                            mX = -100,
+                            mY = -100
+
+                        canvas2.width = 500;
+                        canvas2.height = 500;
+
+                        function snow() {
+                            ctx.clearRect(0, 0, canvas2.width, canvas2.height);
+
+                            for (let i = 0; i < flakeCount; i++) {
+                                let flake = flakes[i],
+                                    x = mX,
+                                    y = mY,
+                                    minDist = 150,
+                                    x2 = flake.x,
+                                    y2 = flake.y;
+
+                                let dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)),
+                                    dx = x2 - x,
+                                    dy = y2 - y;
+
+                                if (dist < minDist) {
+                                    let force = minDist / (dist * dist),
+                                        xcomp = (x - x2) / dist,
+                                        ycomp = (y - y2) / dist,
+                                        deltaV = force / 2;
+
+                                    flake.velX -= deltaV * xcomp;
+                                    flake.velY -= deltaV * ycomp;
+
+                                } else {
+                                    flake.velX *= .98;
+                                    if (flake.velY <= flake.speed) {
+                                        flake.velY = flake.speed
+                                    }
+                                    flake.velX += Math.cos(flake.step += .05) * flake.stepSize;
+                                }
+
+                                ctx.fillStyle = "rgba(255,255,255," + flake.opacity + ")";
+                                flake.y += flake.velY;
+                                flake.x += flake.velX;
+
+                                if (flake.y >= canvas2.height || flake.y <= 0) {
+                                    reset(flake);
+                                }
+
+
+                                if (flake.x >= canvas2.width || flake.x <= 0) {
+                                    reset(flake);
+                                }
+
+                                ctx.beginPath();
+                                ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+                                ctx.fill();
+                            }
+                            requestAnimationFrame(snow);
+                        };
+
+                        function reset(flake) {
+                            flake.x = Math.floor(Math.random() * canvas2.width);
+                            flake.y = 0;
+                            flake.size = (Math.random() * 3) + 2;
+                            flake.speed = (Math.random() * 1) + 0.5;
+                            flake.velY = flake.speed;
+                            flake.velX = 0;
+                            flake.opacity = (Math.random() * 0.5) + 0.3;
+                        }
+
+                        function init() {
+                            for (let i = 0; i < flakeCount; i++) {
+                                let x = Math.floor(Math.random() * canvas2.width),
+                                    y = Math.floor(Math.random() * canvas2.height),
+                                    size = (Math.random() * 3) + 2,
+                                    speed = (Math.random() * 1) + 0.5,
+                                    opacity = (Math.random() * 0.5) + 0.3;
+
+                                flakes.push({
+                                    speed: speed,
+                                    velY: speed,
+                                    velX: 0,
+                                    x: x,
+                                    y: y,
+                                    size: size,
+                                    stepSize: (Math.random()) / 30,
+                                    step: 0,
+                                    opacity: opacity
+                                });
+                            }
+
+                            snow();
+                        };
+
+                        init();
+                   </script>
+                </section>
+                <section>
+                    <p>Mobile Devices and Performance Optimization</p>
+                    <img src="./img/Banner590.jpg" alt="phones">
+                </section>
+                <section data-transition="zoom">
+                    <h1>Thank You</h1>
                 </section>
                 </div>
             </div>
@@ -168,6 +364,7 @@
                     }]
                 });
             </script>
+           
     </body>
 
 </p>
